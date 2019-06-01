@@ -3,11 +3,18 @@
   <head>
     <meta charset="utf-8" />
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <meta name="theme-color" content="#000000" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <!--
+        在react框架中，所有的逻辑都是在JS中完成的（包括页面结构的创建），如果想给当前页面导入一些css样式或者img图片等内容，我们有两种方式：
+
+        1.在JS中基于ES6 Module模块规范，使用import导入，这样webpack在编译合并JS的时候，会把导入的资源文件等插入到页面的结构中（绝对不能在JS管控的结构中通过相对目录./或者../导入资源，因为在webpack编译的时候，地址就不再是之前的相对地址了）。
+
+         2.如果不想在JS中导入（JS中导入的资源最后都会基于webpack编译），我们也可以把资源手动的在HTML中导入，但是HTML最后也要基于webpack编译，导入的地址也不建议写相对地址，而是使用 %PUBLIC_URL% 写成绝对地址。
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <!--
@@ -20,6 +27,7 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/reset.min.css">
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
